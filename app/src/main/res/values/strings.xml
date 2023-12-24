@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CarPredictor</string>
+    <string name="logo">Logo</string>
+    <string name="year">Year</string>
 </resources>
