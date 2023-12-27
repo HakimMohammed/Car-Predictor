@@ -4,30 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".WelcomePage">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="148dp"
-        android:layout_height="124dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/logo"
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="monospace"
+        android:text="Enter your Car's information"
+        android:textColor="@color/black"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/voiture" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- MPG Input  -->
+    <!-- label -->
+    <!-- input -->
+    <TextView
+        android:id="@+id/MPG_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="monospace"
+        android:text="MPG :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
     <EditText
-        android:id="@+id/year"
+        android:id="@+id/MPG"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/years"
+        android:background="@drawable/custom_edittext_with_shadow"
+        android:drawableLeft="@drawable/dooot"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
         android:hint="@string/year"
@@ -39,130 +61,186 @@
         android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/MPG_label" />
 
+    <!-- Displacement Input  -->
+    <!-- label -->
+    <!-- input -->
+    <TextView
+        android:id="@+id/Displacement_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="monospace"
+        android:text="Displacement :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MPG" />
 
     <EditText
-        android:id="@+id/mileage"
+        android:id="@+id/Displacement"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/speed"
+        android:background="@drawable/custom_edittext_with_shadow"
+        android:drawableLeft="@drawable/dooot"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:hint="Mileage"
+        android:hint="@string/year"
         android:inputType="number"
+        android:paddingStart="10dp"
         android:paddingLeft="10dp"
-        android:textColor="#D8D3CD"
-        android:textColorHint="#D8D3CD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fuelType" />
-
-    <Spinner
-        android:id="@+id/fuelType"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/custom_spinner"
         android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:layout_marginRight="30dp"
+        android:textColor="#D8D3CD"
+        android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/year"
-        android:paddingEnd="10dp" />
+        app:layout_constraintTop_toBottomOf="@+id/Displacement_label" />
+
+    <!-- Acceleration Input  -->
+    <!-- label -->
+    <!-- input -->
+    <TextView
+        android:id="@+id/Acceleration_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="monospace"
+        android:text="Acceleration :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Displacement" />
 
     <EditText
-        android:id="@+id/tax"
+        android:id="@+id/Acceleration"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/tax"
+        android:drawableLeft="@drawable/dooot"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:hint="Tax"
-        android:textColor="#D8D3CD"
+        android:hint="@string/year"
         android:inputType="number"
+        android:paddingStart="10dp"
         android:paddingLeft="10dp"
-        android:textColorHint="#D8D3CD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mileage" />
-
-    <EditText
-        android:id="@+id/mgp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/gallon"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:hint="Miles per gallon"
-        android:inputType="numberDecimal"
-        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:textColor="#D8D3CD"
         android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tax" />
+        app:layout_constraintTop_toBottomOf="@+id/Acceleration_label" />
+
+    <!-- Weight Input  -->
+    <!-- label -->
+    <!-- input -->
+    <TextView
+        android:id="@+id/Weight_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="monospace"
+        android:text="Weight :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Acceleration" />
 
     <EditText
-        android:id="@+id/engineSize"
+        android:id="@+id/Weight"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/carengine"
+        android:drawableLeft="@drawable/dooot"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:hint="Engine size"
-        android:textColor="#D8D3CD"
-        android:inputType="numberDecimal"
+        android:hint="@string/year"
+        android:inputType="number"
+        android:paddingStart="10dp"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#D8D3CD"
         android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mgp" />
+        app:layout_constraintTop_toBottomOf="@+id/Weight_label" />
+
+    <!-- HorsePower Input  -->
+    <!-- label -->
+    <!-- input -->
+
+    <TextView
+        android:id="@+id/HorsePower_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:text="Horse Power :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Weight" />
+
+    <EditText
+        android:id="@+id/HorsePower"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/custom_edittext"
+        android:drawableLeft="@drawable/dooot"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="@string/year"
+        android:inputType="number"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#D8D3CD"
+        android:textColorHint="#D8D3CD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HorsePower_label" />
+
+
 
     <Button
         android:id="@+id/predict_btn"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/custom_button"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/green"
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:text="Predict"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/engineSize" />
+        app:layout_constraintTop_toBottomOf="@+id/HorsePower" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
