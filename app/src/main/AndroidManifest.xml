@@ -22,6 +22,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".WelcomePage" />
+        <activity android:name=".Algorithms" />
+        <activity android:name=".DecisionTree" />
+        <activity android:name=".BaysNetwork" />
+        <activity android:name=".KNN" />
+        <activity android:name=".Result" />
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
