@@ -121,4 +121,29 @@ public class Car implements Parcelable {
 
         return distance;
     }
+
+    public String getMpgCat() {
+        String cat;
+        if (this.getMpg() > 31.87)
+            cat = "high";
+        else
+            cat = "low";
+        return cat;
+    }
+    public String getDisplacementCat() {
+        return this.getDisplacement() > 88.57 ? "high" : "low";
+    }
+
+    public String getHorsepowerCat() {
+        return this.getHorsePower() > 60.09 ? "high" : "low";
+    }
+
+    public String getWeightCat() {
+        return this.getWeight() > 1817.77 ? "high" : "low";
+    }
+
+    public String getAccelerationCat() {
+        return this.getAcceleration() > 17.13 ? "high" : "low";
+    }
+
 }
