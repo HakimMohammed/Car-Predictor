@@ -4,90 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bg_primary"
     tools:context=".Algorithms">
 
     <!-- Title -->
+
+    <!-- Container ViewGroup (LinearLayout) -->
     <TextView
         android:id="@+id/algorithmTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="monospace"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/inter_black"
         android:text="Choose an algorithm"
-        android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/decision_tree_btn"
-        android:layout_width="223dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="144dp"
-        android:backgroundTint="@color/green"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:text="Decision Tree"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+    <LinearLayout
+        android:id="@+id/containerLayout"
+        android:layout_width="341dp"
+        android:layout_height="404dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/algorithmTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/algorithmTitle"
+        app:layout_constraintVertical_bias="0.285">
 
-    <Button
-        android:id="@+id/bays_btn"
-        android:layout_width="223dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="100dp"
-        android:backgroundTint="@color/green"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:text="Bays Network"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/decision_tree_btn" />
+        <!-- Decision Tree Button -->
 
-    <EditText
-        android:id="@+id/k"
-        android:layout_width="242dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/dooot"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:hint="K"
-        android:inputType="number"
-        android:paddingStart="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="#D8D3CD"
-        android:textColorHint="#D8D3CD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/knn_btn" />
+        <!-- Bays Network Button -->
 
-    <Button
-        android:id="@+id/knn_btn"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:backgroundTint="@color/green"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:text="KNN"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bays_btn" />
+        <Button
+            android:id="@+id/decision_tree_btn"
+            android:layout_width="250dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Decision Tree"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <!-- KNN Button -->
+        <Button
+            android:id="@+id/bays_btn"
+            android:layout_width="250dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Bays Network"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/knn_btn"
+            android:layout_width="250dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="KNN"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <!-- Input Field for 'K' -->
+
+        <LinearLayout
+            android:id="@+id/containerLayoutKNN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/algorithmTitle"
+            app:layout_constraintVertical_bias="0.285">
+
+            <!-- Input Field for 'K' using Material Design -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:hint="Enter KNN">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/k"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="50dp"
+                    android:inputType="number"
+                    android:textSize="15sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Submit KNN Button -->
+            <Button
+                android:id="@+id/submitKNN"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/bg_secondary"
+                android:textColor="@color/white"
+                android:text="send"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

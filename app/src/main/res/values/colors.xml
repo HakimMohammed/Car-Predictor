@@ -8,5 +8,9 @@
     <color name="dark_blue">#0077b6</color>
     <color name="darker_blue">#03045e</color>
     <color name="green">#00eb79</color>
+    <color name="bg_primary">#202442</color>
+    <color name="bg_secondary">#353A61</color>
+    <color name="primary">#3CD27D</color>
+    <color name="secondary">#9E9FA9</color>
 
 </resources>

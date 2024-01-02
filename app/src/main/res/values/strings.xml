@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">CarPredictor</string>
     <string name="logo">Logo</string>
-    <string name="year">Year</string>
+    <string name="mpg">Enter MPG </string>
+    <string name="displacement">Enter Displacement </string>
+    <string name="acceleration">Enter Acceleration </string>
+    <string name="weight">Enter Weight </string>
+    <string name="horse_power">Enter Horse Power </string>
 </resources>

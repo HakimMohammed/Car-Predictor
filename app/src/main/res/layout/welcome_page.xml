@@ -4,228 +4,147 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:id="@+id/welcome"
+    android:background="?android:attr/windowBackground"
     tools:context=".WelcomePage">
 
     <!-- Title -->
+
+    <!-- MPG Input -->
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="monospace"
-        android:text="Enter your Car's information"
-        android:textColor="@color/black"
-        android:textSize="22sp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/inter_black"
+        android:text="Car information"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- MPG Input  -->
-    <!-- label -->
-    <!-- input -->
-    <TextView
-        android:id="@+id/MPG_label"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/MPG_inputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="monospace"
-        android:text="MPG :"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleText" />
-
-    <EditText
-        android:id="@+id/MPG"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
         android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/custom_edittext_with_shadow"
-        android:drawableLeft="@drawable/dooot"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:hint="@string/year"
-        android:inputType="number"
-        android:paddingStart="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="#D8D3CD"
-        android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MPG_label" />
+        app:layout_constraintTop_toBottomOf="@+id/titleText">
 
-    <!-- Displacement Input  -->
-    <!-- label -->
-    <!-- input -->
-    <TextView
-        android:id="@+id/Displacement_label"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/MPG"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mpg"
+            android:inputType="number"
+            android:textColor="#D8D3CD"
+            android:textColorHint="#D8D3CD"
+            android:textSize="15sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Displacement Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Displacement_inputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="monospace"
-        android:text="Displacement :"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MPG" />
-
-    <EditText
-        android:id="@+id/Displacement"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/custom_edittext_with_shadow"
-        android:drawableLeft="@drawable/dooot"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:hint="@string/year"
-        android:inputType="number"
-        android:paddingStart="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="#D8D3CD"
-        android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Displacement_label" />
+        app:layout_constraintTop_toBottomOf="@+id/MPG_inputLayout">
 
-    <!-- Acceleration Input  -->
-    <!-- label -->
-    <!-- input -->
-    <TextView
-        android:id="@+id/Acceleration_label"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Displacement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/displacement"
+            android:inputType="number"
+            android:textColor="#D8D3CD"
+            android:textColorHint="#D8D3CD"
+            android:textSize="15sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Acceleration Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Acceleration_inputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="monospace"
-        android:text="Acceleration :"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Displacement" />
-
-    <EditText
-        android:id="@+id/Acceleration"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/dooot"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:hint="@string/year"
-        android:inputType="number"
-        android:paddingStart="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="#D8D3CD"
-        android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Acceleration_label" />
+        app:layout_constraintTop_toBottomOf="@+id/Displacement_inputLayout">
 
-    <!-- Weight Input  -->
-    <!-- label -->
-    <!-- input -->
-    <TextView
-        android:id="@+id/Weight_label"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Acceleration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/acceleration"
+            android:inputType="number"
+            android:textColor="#D8D3CD"
+            android:textColorHint="#D8D3CD"
+            android:textSize="15sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Weight Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Weight_inputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="monospace"
-        android:text="Weight :"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Acceleration" />
-
-    <EditText
-        android:id="@+id/Weight"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/dooot"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:hint="@string/year"
-        android:inputType="number"
-        android:paddingStart="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="#D8D3CD"
-        android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Weight_label" />
+        app:layout_constraintTop_toBottomOf="@+id/Acceleration_inputLayout">
 
-    <!-- HorsePower Input  -->
-    <!-- label -->
-    <!-- input -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/weight"
+            android:inputType="number"
+            android:textColor="#D8D3CD"
+            android:textColorHint="#D8D3CD"
+            android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/HorsePower_label"
-        android:layout_width="wrap_content"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- HorsePower Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/HorsePower_inputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="monospace"
-        android:text="Horse Power :"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Weight" />
-
-    <EditText
-        android:id="@+id/HorsePower"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
         android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/dooot"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:hint="@string/year"
-        android:inputType="number"
-        android:paddingStart="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="#D8D3CD"
-        android:textColorHint="#D8D3CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HorsePower_label" />
+        app:layout_constraintTop_toBottomOf="@+id/Weight_inputLayout">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/HorsePower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/horse_power"
+            android:inputType="number"
+            android:textColor="#D8D3CD"
+            android:textColorHint="#D8D3CD"
+            android:textSize="15sp" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Predict Button -->
     <Button
         android:id="@+id/predict_btn"
         android:layout_width="150dp"
@@ -236,11 +155,10 @@
         android:gravity="center"
         android:text="Predict"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HorsePower" />
-
+        app:layout_constraintTop_toBottomOf="@+id/HorsePower_inputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
