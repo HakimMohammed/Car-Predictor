@@ -11,9 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import weka.classifiers.Evaluation;
+import weka.classifiers.bayes.NaiveBayes;
+import weka.core.DenseInstance;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils;
 
 public class BaysNetwork extends AppCompatActivity {
 
@@ -23,211 +31,64 @@ public class BaysNetwork extends AppCompatActivity {
         Intent recieverintent = getIntent();
         Car receivedCar = recieverintent.getParcelableExtra("car");
 
-        String Origin = this.bayes_Algorithm(receivedCar);
+        HashMap<String, String> result = null;
+        try {
+            result = this.predict_origin(receivedCar);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         Intent senderIntent = new Intent(BaysNetwork.this, Result.class);
-        senderIntent.putExtra("result", Origin);
+        senderIntent.putExtra("result", result.get("origin"));
+        senderIntent.putExtra("precision", result.get("precision"));
+        senderIntent.putExtra("accuracy", result.get("accuracy"));
+        senderIntent.putExtra("fScore", result.get("fScore"));
+        senderIntent.putExtra("recall", result.get("recall"));
         startActivity(senderIntent);
     }
 
-    public String bayes_Algorithm(Car car) {
-        List<Car> list = this.readData();
-        ArrayList<HashMap<String, Double>> probabilities = new ArrayList<HashMap<String, Double>>();
+    public HashMap<String, String> predict_origin(Car car) throws Exception{
+        // Initialize result list
+        HashMap<String, String> results = new HashMap<String, String>();
 
-        ArrayList<Car> JA = new ArrayList<Car>();
-        ArrayList<Car> EU = new ArrayList<Car>();
-        ArrayList<Car> AM = new ArrayList<Car>();
+        // Load the dataset from a .arff file
+        BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open("Cars.arff")));
+        Instances data = new Instances(reader);
 
-        for (Car item : list)
-            switch (item.getOrigin()) {
-                case "japanese":
-                    JA.add(item);
-                    break;
-                case "american":
-                    AM.add(item);
-                    break;
-                case "european":
-                    EU.add(item);
-                    break;
-                default:
-                    break;
-            }
+        // Set the class attribute (assuming it's the last attribute)
+        data.setClassIndex(data.numAttributes() - 1);
 
-        probabilities.add(classification(JA));    // 0=drugA
-        probabilities.add(classification(AM));    // 1=drugB
-        probabilities.add(classification(EU));    // 2=drugC
+        // Create a Naive Bayes classifier
+        NaiveBayes naiveBayes = new NaiveBayes();
+        naiveBayes.buildClassifier(data);
 
-        probabilities.get(0).put("proba", (double) JA.size() / list.size());
-        probabilities.get(1).put("proba", (double) AM.size() / list.size());
-        probabilities.get(2).put("proba", (double) EU.size() / list.size());
+        // Make predictions for new instances
+        double[] newInstValues = {car.getMpg(), car.getDisplacement(), car.getHorsePower(), car.getWeight(), car.getAcceleration()};
+        Instance newInst = new DenseInstance(1.0, newInstValues);
+        newInst.setDataset(data);
 
-        return appropriateOrigin(car, probabilities);
-    }
+        // Classify the new instance
+        double prediction = naiveBayes.classifyInstance(newInst);
 
-    private static HashMap<String, Double> classification(ArrayList<Car> list) {
-        HashMap<String, Double> hm = new HashMap<String, Double>();
+        // Print the predicted class
+        System.out.println("Predicted class: " + data.classAttribute().value((int) prediction));
 
-        double aux1 = 0.0, aux2 = 0.0, aux3 = 0.0;
-        //debut : MPG
-        for (Car car : list)
-            switch (car.getMpgCat().toLowerCase()) {
-                case "high":
-                    aux1++;
-                    break;
-                case "low":
-                    aux2++;
-                    break;
-                default:
-                    break;
-            }
+        results.put("origin",data.classAttribute().value((int) prediction));
 
-        hm.put("mpg_high", (double) aux1 / list.size());
-        hm.put("mpg_low", (double) aux2 / list.size());
-        aux1 = 0.0;
-        aux2 = 0.0;
-        aux3 = 0.0;
-        //fin : MPG
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");  // Adjust the pattern to control the number of decimal places
 
-        // Displacement
-        for (Car car : list) {
-            switch (car.getDisplacementCat().toLowerCase()) {
-                case "high":
-                    aux1++;
-                    break;
-                case "low":
-                    aux2++;
-                    break;
-                default:
-                    break;
-            }
-        }
+        // get the valutation of the algorithm
+        Evaluation evaluation = new Evaluation(data);
+        evaluation.evaluateModel(naiveBayes, data);
+        //Precision
+        results.put("precision", String.valueOf(decimalFormat.format(evaluation.precision((int) prediction) * 100)));
+        //Recall
+        results.put("recall", String.valueOf(decimalFormat.format(evaluation.recall((int) prediction) * 100)));
+        //F-Score
+        results.put("fScore", String.valueOf(decimalFormat.format(evaluation.fMeasure((int) prediction) * 100)));
+        //Accuracy
+        results.put("accuracy", String.valueOf(decimalFormat.format(evaluation.pctCorrect())));
 
-        hm.put("displacement_high", (double) aux1 / list.size());
-        hm.put("displacement_low", (double) aux2 / list.size());
-        aux1 = 0.0;
-        aux2 = 0.0;
-        aux3 = 0.0;
-
-// Horsepower
-        for (Car car : list) {
-            switch (car.getHorsepowerCat().toLowerCase()) {
-                case "high":
-                    aux1++;
-                    break;
-                case "low":
-                    aux2++;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        hm.put("horsepower_high", (double) aux1 / list.size());
-        hm.put("horsepower_low", (double) aux2 / list.size());
-        aux1 = 0.0;
-        aux2 = 0.0;
-        aux3 = 0.0;
-
-// Weight
-        for (Car car : list) {
-            switch (car.getWeightCat().toLowerCase()) {
-                case "high":
-                    aux1++;
-                    break;
-                case "low":
-                    aux2++;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        hm.put("weight_high", (double) aux1 / list.size());
-        hm.put("weight_low", (double) aux2 / list.size());
-        aux1 = 0.0;
-        aux2 = 0.0;
-        aux3 = 0.0;
-
-// Acceleration
-        for (Car car : list) {
-            switch (car.getAccelerationCat().toLowerCase()) {
-                case "high":
-                    aux1++;
-                    break;
-                case "low":
-                    aux2++;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        hm.put("acceleration_high", (double) aux1 / list.size());
-        hm.put("acceleration_low", (double) aux2 / list.size());
-        aux1 = 0.0;
-        aux2 = 0.0;
-        aux3 = 0.0;
-
-
-        return hm;
-    }
-
-    private static String appropriateOrigin(Car car, ArrayList<HashMap<String, Double>> probabilities) {
-        HashMap<String, Double> origins = new HashMap<String, Double>();
-        origins.put("japanese", calcProb(car, probabilities.get(0)));
-        origins.put("american", calcProb(car, probabilities.get(1)));
-        origins.put("european", calcProb(car, probabilities.get(2)));
-
-        double maxVal = origins.get("japanese");
-        String origin = "japanese";
-
-        for (String key : origins.keySet())
-            if (maxVal < origins.get(key)) {
-                maxVal = origins.get(key);
-                origin = key;
-            }
-
-        Log.d("appropriateOrigin","origin :"+origin);
-
-        return origin;
-    }
-
-    private static double calcProb(Car car, HashMap<String, Double> hm) {
-        double probability;
-
-        String mpgCat = "mpg_" + String.valueOf(car.getMpgCat()).toLowerCase();
-        String displacementCat = "displacement_" + String.valueOf(car.getDisplacementCat()).toLowerCase();
-        String accelerationCat = "acceleration_" + String.valueOf(car.getAccelerationCat()).toLowerCase();
-        String weightCat = "weight_" + String.valueOf(car.getWeightCat()).toLowerCase();
-        String horsePowerCat = "horsepower_" + String.valueOf(car.getHorsepowerCat()).toLowerCase();
-
-        probability = hm.get(mpgCat) * hm.get(displacementCat) * hm.get(accelerationCat) *
-                hm.get(weightCat) * hm.get(horsePowerCat) * hm.get("proba");
-
-        return probability;
-    }
-
-    private ArrayList<Car> readData() {
-        ArrayList<Car> list = new ArrayList<Car>();
-        try {
-            // Get Data from .csv file
-            BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open("Cars.txt")));
-            String ligne = null;
-            Car car = null;
-            String[] values = null;
-
-
-            while ((ligne = reader.readLine()) != null) {
-                values = ligne.split(",");
-                Log.d("reading", "Input string: [" + values[0] + "]");
-                car = new Car(values[0], values[1], values[2], values[3], values[4], values[5]);
-                list.add(car);
-            }
-        } catch (IOException e) {
-            Toast.makeText(BaysNetwork.this, e.getMessage(), Toast.LENGTH_LONG).show();
-
-        }
-        Log.d("ReadData", "Data well recieved" + list.size());
-        return list;
+        return results;
     }
 }

@@ -26,14 +26,14 @@ public class Algorithms extends AppCompatActivity {
 
         // Decision Tree Algorithm
         DecisionTreeButton = (Button) findViewById(R.id.decision_tree_btn);
-        /*DecisionTreeButton.setOnClickListener(new View.OnClickListener() {
+        DecisionTreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent( Algorithms.this, DecisionTree.class);
                 intent.putExtra("car", receivedCar);
                 startActivity(intent);
             }
-        });*/
+        });
 
         // KNN Algorithm
         KNNButton = (Button) findViewById(R.id.knn_btn);
