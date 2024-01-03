@@ -4,34 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bg_primary"
     tools:context=".DecisionTree"
     >
-
     <TextView
         android:id="@+id/decisionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="monospace"
-        android:text="Decision Trre Page"
-        android:textColor="@color/black"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="Decision Tree Page"
+        android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/treeRes"
-        android:layout_width="141dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="380dp"
-        android:text="Initial Text"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="10dp"
+        android:backgroundTint="@color/bg_secondary"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Add your content here, like TextViews, ImageViews, etc. -->
+
+            <TextView
+                android:id="@+id/treeRes"
+                android:layout_width="141dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/inter_medium"
+                android:text="Initial Text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

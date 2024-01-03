@@ -1,6 +1,7 @@
 package com.example.carpredictor;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class Algorithms extends AppCompatActivity {
     Button DecisionTreeButton, KNNButton, BaysButton;
@@ -19,6 +21,21 @@ public class Algorithms extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.algorithms);
+
+        ConstraintLayout constraintLayout = findViewById(R.id.algoPage);
+        // Check the current night mode setting
+        int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                // Dark mode is enabled, set green background
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.bg_primary));
+                break;
+            case Configuration.UI_MODE_NIGHT_NO:
+                // Light mode is enabled, set white background
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                break;
+        }
 
         Intent intent = getIntent();
         Car receivedCar = intent.getParcelableExtra("car");

@@ -10,12 +10,10 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="290dp"
-        android:layout_height="320dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498"
-        app:srcCompat="@drawable/annotation_2023_12_27_153523" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/car_driving_61"
+        android:scaleType="fitCenter"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
